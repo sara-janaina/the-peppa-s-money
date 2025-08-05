@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Livello 13 - Coin Collector</title>
+  <link rel="stylesheet" href="coin-style-new.css">
+  <style>
+    body { flex-direction: column; justify-content: flex-start; }
+    .welcome-container { max-width: 600px; margin: 40px auto; background: rgba(0,0,0,0.3); border-radius: 20px; padding: 32px 24px 24px 24px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+    .welcome-title { font-size: 2.2em; color: #ffd700; margin-bottom: 10px; font-family: 'Comic Sans MS', Arial, sans-serif; text-shadow: 2px 2px 8px #764ba2; }
+    .welcome-gif { margin: 0 auto 18px auto; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.2); width: 180px; height: auto; display: block; }
+    .start-btn { background: linear-gradient(45deg, #ffd700, #ffed4e); color: #333; border: none; padding: 14px 38px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1.2em; margin-top: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.2s; }
+    .start-btn:hover { transform: scale(1.07); background: linear-gradient(45deg, #ffed4e, #ffd700); }
+    .main-menu { margin-bottom: 24px; }
+    .main-menu span { font-size: 1.3em; color: #ffd700; font-family: 'Comic Sans MS', Arial, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <nav class="main-menu">
+      <span>Livello 13</span>
+    </nav>
+    <div class="welcome-title">The Peppa's Money</div>
+    <img class="welcome-gif" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" alt="Gif animata monete" />
+    <audio id="welcomeMusic" src="https://cdn.pixabay.com/audio/2023/03/16/audio_128b6b2b2b.mp3" autoplay loop></audio>
+    <div style="margin-top:32px;padding:18px;background:rgba(0,0,0,0.15);border-radius:12px;">
+      <h3 style="color:#ffd700;margin-bottom:10px;">Benvenuto al Livello 13!</h3>
+      <p style="color:#fff;font-size:1.08em;max-width:420px;margin:0 auto;">Hai scelto la modalità <span id="modeDisplay"></span> e raccoglierai <span id="coinDisplay"></span>.</p>
+      <a id="startLink"><button class="start-btn" style="width:220px;margin-top:18px;">🚀 Avvia Livello</button></a>
+      <a href="menu.html"><button class="start-btn" style="width:220px;margin-top:18px;">🔙 Torna al Menu</button></a>
+    </div>
+    <script>
+      function getParams() {
+        const params = new URLSearchParams(window.location.search);
+        let mode = params.get('mode');
+        let coin = params.get('coin');
+        if (!mode) mode = 'timed';
+        if (!coin) coin = 'diamond';
+        return { mode, coin };
+      }
+      const { mode, coin } = getParams();
+      const modeMap = { timed: '⏰ Modalità con Tempo', free: '🕹️ Modalità Libera' };
+      const coinMap = {
+        diamond: '<span style="color:#00eaff">💎 Diamanti</span>',
+        ruby: '<span style="color:#e74c3c">♦️ Diamanti Rubino</span>',
+        emerald: '<span style="color:#00ff88">♦️ Diamanti Smeraldo</span>'
+      };
+      document.getElementById('modeDisplay').textContent = modeMap[mode] || mode;
+      document.getElementById('coinDisplay').innerHTML = coinMap[coin] || coin;
+      document.getElementById('startLink').href = `coin-collector.html?mode=${mode}&coin=${coin}&level=13`;
+      window.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('welcomeMusic').play();
+      });
+    </script>
+  </div>
+  <div id="gameScreen">
+    <div id="gameHeader">
+      <div id="gameStats">
+        <span>💰 Score: <span id="scoreDisplay">0</span></span>
+        <span>📊 Level: 13</span>
+      </div>
+      <div class="game-buttons">
+        <button id="pauseBtn">⏸️ PAUSE</button>
+        <button id="resetBtn">🔄 RESET</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="gameControls">
+      <div class="controls-info">
+        <span>Usa ↑↓←→ o WASD per muoverti e raccogliere le monete!</span>
+      </div>
+    </div>
+    <div id="coinTypeDisplay" style="margin:12px 0;font-size:1.2em;color:#ffd700;"></div>
+    <div id="gameOverScreen" style="display: none;">
+      <div class="game-over-content">
+        <h2>Game Over!</h2>
+        <p>Monete raccolte: <span id="finalCoins">0</span></p>
+        <div class="game-over-buttons">
+          <a href="livello14.html"><button>➡️ Prossimo Livello</button></a>
+          <button onclick="location.reload()">🔄 Rigioca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.levelConfigFile = 'levels/level13.json';
+  </script>
+  <script src="coin-script-simple.js"></script>
+  <footer style="text-align:center;padding:20px;background:rgba(0,0,0,0.1);color:#fff;margin-top:40px;">
+    <p>&copy; 2024 Sara Janaina Pettinari ALPACA HI-TECH</p>
+  </footer>
+</body>
+</html>
+  <!-- La logica di gioco rimane invariata -->
+</body>
+</html>

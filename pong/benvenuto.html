@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>The Peppa's Money - Benvenuto</title>
+  <link rel="stylesheet" href="coin-style-new.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      flex-direction: column;
+      justify-content: flex-start;
+      font-family: 'Comic Neue', 'Comic Sans MS', Arial, sans-serif;
+      background: linear-gradient(120deg, #764ba2 0%, #667eea 100%);
+      min-height: 100vh;
+    }
+    .welcome-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      padding: 32px 24px 24px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .welcome-title {
+      font-size: 2.5em;
+      color: #ffd700;
+      margin-bottom: 10px;
+      font-family: 'Comic Neue', 'Comic Sans MS', Arial, sans-serif;
+      text-shadow: 2px 2px 12px #764ba2;
+    }
+    .welcome-desc {
+      font-size: 1.2em;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .welcome-svg {
+      margin: 0 auto 18px auto;
+      display: block;
+      width: 180px;
+      height: 180px;
+      animation: bounce 1.2s infinite alternate;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-18px); }
+    }
+    .welcome-gif {
+      margin: 0 auto 18px auto;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.25);
+      width: 200px;
+      height: auto;
+      display: block;
+    }
+    .start-btn {
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      color: #333;
+      border: none;
+      padding: 16px 44px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.25em;
+      margin-top: 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+      transition: transform 0.2s;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .start-btn:hover {
+      transform: scale(1.07);
+      background: linear-gradient(45deg, #ffed4e, #ffd700);
+    }
+    .game-mode-menu {
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    .game-mode-menu div {
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      color: #ffd700;
+    }
+    .coin-choice {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px;
+    }
+    .main-menu {
+      margin-bottom: 24px;
+    }
+    .main-menu span {
+      font-size: 1.3em;
+      color: #ffd700;
+      font-family: 'Comic Sans MS', Arial, sans-serif;
+    }
+    .main-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .main-menu a {
+      color: #ffd700;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <nav class="main-menu">
+      <span style="font-size:1.3em;color:#ffd700;">Benvenuto</span>
+    </nav>
+    <div class="welcome-title">The Peppa's Money</div>
+    <img class="welcome-gif" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" alt="Gif animata monete" />
+    <audio id="welcomeMusic" src="https://cdn.pixabay.com/audio/2022/10/16/audio_125b7b2b2b.mp3" preload="auto" loop></audio>
+    <div style="margin-top:32px;padding:18px;background:rgba(0,0,0,0.15);border-radius:12px;">
+      <h3 style="color:#ffd700;margin-bottom:10px;">Benvenuto!</h3>
+      <p style="color:#fff;font-size:1.08em;max-width:420px;margin:0 auto;">Hai scelto la modalità <span id="modeDisplay"></span> e raccoglierai <span id="coinDisplay"></span>.</p>
+      <a id="startGameBtn"><button class="start-btn" style="width:220px;margin-top:18px;">🚀 Avvia Gioco</button></a>
+      <a href="menu.html"><button class="start-btn" style="width:220px;margin-top:18px;">🔙 Torna al Menu</button></a>
+      <div id="gameOverScreen" style="display:none; margin-top:24px;">
+        <div class="game-over-content" style="background:rgba(0,0,0,0.85);padding:28px;border-radius:18px;text-align:center;border:2px solid #ffd700;">
+          <h2 style="color:#ffd700;margin-bottom:15px;font-size:2em;">Game Over!</h2>
+          <p style="margin-bottom:20px;font-size:1.15em;color:#fff;">Hai perso! Vuoi riprovare?</p>
+          <div style="display:flex;gap:18px;justify-content:center;">
+            <button onclick="location.reload()" class="start-btn">🔄 Rigioca</button>
+            <a href="menu.html"><button class="start-btn">🔙 Menu</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // --- Utility ---
+      const modeMap = { timed: '⏰ Modalità con Tempo', free: '🕹️ Modalità Libera' };
+      const coinMap = {
+        diamond: '<span style="color:#00eaff">💎 Diamanti</span>',
+        ruby: '<span style="color:#e74c3c">♦️ Diamanti Rubino</span>',
+        emerald: '<span style="color:#00ff88">♦️ Diamanti Smeraldo</span>'
+      };
+      function getParams() {
+        const params = new URLSearchParams(window.location.search);
+        let mode = params.get('mode') || 'timed';
+        let coin = params.get('coin') || 'diamond';
+        return { mode, coin };
+      }
+      // --- Inizializza pagina ---
+      window.addEventListener('DOMContentLoaded', function() {
+        const { mode, coin } = getParams();
+        document.getElementById('modeDisplay').textContent = modeMap[mode] || mode;
+        document.getElementById('coinDisplay').innerHTML = coinMap[coin] || coin;
+        // Musica di benvenuto
+        const music = document.getElementById('welcomeMusic');
+        music.volume = 0.5;
+        setTimeout(() => { music.play(); }, 300);
+        // Pulsante avvia gioco
+        document.getElementById('startGameBtn').setAttribute('href', `coin-collector.html?mode=${mode}&coin=${coin}`);
+      });
+      // --- Game Over ---
+      function showGameOver() {
+        document.getElementById('gameOverScreen').style.display = 'block';
+      }
+    </script>
+  </div>
+  <footer style="text-align:center;padding:20px;background:rgba(0,0,0,0.1);color:#fff;margin-top:40px;">
+    <p>&copy; 2024 Sara Janaina Pettinari ALPACA HI-TECH</p>
+  </footer>
+</body>
+</html>

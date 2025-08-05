@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coin Collector - Gioco Avviato</title>
+  <link rel="stylesheet" href="coin-style-new.css">
+</head>
+<body>
+  <div id="gameScreen">
+    <div id="gameHeader">
+      <div id="gameStats">
+        <span>⏰ Time: <span id="timeDisplay">60</span></span>
+        <span>💰 Score: <span id="scoreDisplay">0</span></span>
+        <span>📊 Level: <span id="levelDisplay">1</span></span>
+      </div>
+      <div class="game-buttons">
+        <button id="pauseBtn">⏸️ PAUSE</button>
+        <button id="resetBtn">🔄 RESET</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="gameControls">
+      <div class="controls-info">
+        <span>Usa ↑↓←→ o WASD per muoverti e raccogliere le monete dorate!</span>
+      </div>
+    </div>
+    <div id="gameOverScreen" style="display: none;">
+      <div class="game-over-content">
+        <h2>Game Over!</h2>
+        <p>Monete raccolte: <span id="finalCoins">0</span></p>
+        <div class="game-over-buttons">
+          <button onclick="location.reload()">🔄 Rigioca</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="coin-script-simple.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>The Peppa's Money - Menu</title>
+  <link rel="stylesheet" href="coin-style-new.css">
+  <style>
+    body { flex-direction: column; justify-content: flex-start; }
+    .menu-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      padding: 32px 24px 24px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .menu-title {
+      font-size: 2.2em;
+      color: #ffd700;
+      margin-bottom: 10px;
+      font-family: 'Comic Sans MS', Arial, sans-serif;
+      text-shadow: 2px 2px 8px #764ba2;
+    }
+    .menu-gif {
+      margin: 0 auto 18px auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      width: 180px;
+      height: auto;
+      display: block;
+    }
+    .start-btn {
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      color: #333;
+      border: none;
+      padding: 14px 38px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .start-btn:hover {
+      transform: scale(1.07);
+      background: linear-gradient(45deg, #ffed4e, #ffd700);
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container">
+    <div class="menu-title">Menu Principale</div>
+    <img class="menu-gif" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" alt="Gif animata monete" />
+    <audio id="menuMusic" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b9b2b2.mp3" autoplay loop></audio>
+    <form id="gameMenuForm" style="margin-top:24px;">
+      <div style="margin-bottom:16px;font-size:1.1em;color:#ffd700;">Scegli la modalità di gioco:</div>
+      <select id="modeSelect" class="start-btn" style="width:220px;margin-bottom:18px;">
+        <option value="timed">⏰ Modalità con Tempo</option>
+        <option value="free">🕹️ Modalità Libera</option>
+      </select>
+      <div style="margin-bottom:12px;font-size:1.1em;color:#ffd700;">Scegli il tipo di moneta:</div>
+      <select id="coinSelect" class="start-btn" style="width:220px;margin-bottom:18px;">
+        <option value="diamond">💎 Diamanti</option>
+        <option value="ruby">♦️ Diamanti Rossi</option>
+        <option value="emerald">♦️ Diamanti Verdi</option>
+      </select>
+      <button type="submit" class="start-btn" style="width:220px;">🚀 Avvia Gioco</button>
+    </form>
+    <div style="margin-top:32px;padding:18px;background:rgba(0,0,0,0.15);border-radius:12px;">
+      <h3 style="color:#ffd700;margin-bottom:10px;">Istruzioni di gioco</h3>
+      <ul style="text-align:left;max-width:420px;margin:0 auto;color:#fff;font-size:1.08em;">
+        <li>Usa le frecce o WASD per muovere il personaggio.</li>
+        <li>Raccogli il maggior numero di monete (diamanti, rubini, smeraldi) possibile.</li>
+        <li>Evita gli ostacoli: se ti colpiscono, il gioco termina.</li>
+        <li>Ogni 10 monete raccolte passi al livello successivo.</li>
+        <li>Ad ogni livello gli ostacoli diventano più veloci e numerosi.</li>
+        <li>Puoi scegliere la modalità con tempo o libera dal menu.</li>
+      </ul>
+    </div>
+    <div style="margin:18px 0 0 0;padding:18px;background:rgba(0,0,0,0.15);border-radius:12px;">
+      <h3 style="color:#ffd700;margin-bottom:10px;">Record</h3>
+      <div id="recordDisplay" style="color:#ffd700;font-size:1.15em;">Nessun record ancora registrato.</div>
+    </div>
+    <script>
+      document.getElementById('gameMenuForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const mode = document.getElementById('modeSelect').value;
+        const coin = document.getElementById('coinSelect').value;
+        window.location.href = `benvenuto.html?mode=${mode}&coin=${coin}`;
+      });
+      // Avvia musica menu
+      window.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('menuMusic').play();
+        // Mostra record
+        let best = localStorage.getItem('peppaRecord');
+        const recordDisplay = document.getElementById('recordDisplay');
+        if (recordDisplay) {
+          recordDisplay.textContent = best ? `Record: ${best} monete` : 'Nessun record ancora registrato.';
+        }
+      });
+    </script>
+  </div>
+  <footer style="text-align:center;padding:20px;background:rgba(0,0,0,0.1);color:#fff;margin-top:40px;">
+    <p>&copy; 2024 Sara Janaina Pettinari ALPACA HI-TECH</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coin Collector Game</title>
+  <link rel="stylesheet" href="coin-style-new.css">
+</head>
+<body>
+  <div id="gameScreen">
+    <div id="gameHeader">
+      <div id="gameStats">
+        <span>⏰ Time: <span id="timeDisplay">60</span></span>
+        <span>💰 Score: <span id="scoreDisplay">0</span></span>
+        <span>📊 Level: <span id="levelDisplay">1</span></span>
+      </div>
+      <div class="game-buttons">
+        <button id="pauseBtn">⏸️ PAUSE</button>
+        <button id="resetBtn">🔄 RESET</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="gameControls">
+      <div class="controls-info">
+        <span>Usa ↑↓←→ o WASD per muoverti e raccogliere le monete dorate!</span>
+      </div>
+    </div>
+    <div id="coinTypeDisplay" style="margin:12px 0;font-size:1.2em;color:#ffd700;"></div>
+    <div id="gameOverScreen" style="display: none;">
+      <div class="game-over-content">
+        <h2>Game Over!</h2>
+        <p>Monete raccolte: <span id="finalCoins">0</span></p>
+        <div class="game-over-buttons">
+          <button onclick="location.reload()">🔄 Rigioca</button>
+          <a href="menu.html"><button>🔙 Torna al Menu</button></a>
+          <select id="levelSelect" style="margin-left:12px;padding:6px 12px;border-radius:8px;font-size:1em;">
+            <option value="livello1.html">Livello 1</option>
+            <option value="livello2.html">Livello 2</option>
+            <option value="livello3.html">Livello 3</option>
+            <option value="livello4.html">Livello 4</option>
+            <option value="livello5.html">Livello 5</option>
+            <option value="livello6.html">Livello 6</option>
+            <option value="livello7.html">Livello 7</option>
+            <option value="livello8.html">Livello 8</option>
+            <option value="livello9.html">Livello 9</option>
+            <option value="livello10.html">Livello 10</option>
+            <option value="livello11.html">Livello 11</option>
+            <option value="livello12.html">Livello 12</option>
+            <option value="livello13.html">Livello 13</option>
+            <option value="livello14.html">Livello 14</option>
+            <option value="livello15.html">Livello 15</option>
+            <option value="livello16.html">Livello 16</option>
+            <option value="livello17.html">Livello 17</option>
+            <option value="livello18.html">Livello 18</option>
+            <option value="livello19.html">Livello 19</option>
+            <option value="livello20.html">Livello 20</option>
+          </select>
+          <button id="goLevelBtn" style="margin-left:8px;">Vai al livello</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('goLevelBtn').onclick = function() {
+        var sel = document.getElementById('levelSelect');
+        window.location.href = sel.value;
+      };
+    </script>
+  </div>
+  <script src="coin-script-simple.js"></script>
+</body>
+</html>
